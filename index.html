@@ -2,177 +2,231 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>HorroPedia - La Enciclopedia del Terror</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HORROPEDIA | Archivo Central</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap');
+
         :root {
-            --bg-body: #121212;
-            --bg-content: #1e1e1e;
-            --text-main: #d0d0d0;
-            --wiki-blue: #4ea8ff;
-            --wiki-border: #333;
-            --horror-red: #a00000;
+            --bg-dark: #0a0a0a;
+            --bg-panel: #141414;
+            --bg-card: #1c1c1c;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --accent-red: #8a0303;
+            --accent-hover: #b30000;
+            --border-color: #2a2a2a;
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, sans-serif;
             margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             display: flex;
+            min-height: 100vh;
         }
 
-        /* Barra lateral */
-        nav {
-            width: 170px;
-            padding: 20px 15px;
-            border-right: 1px solid var(--wiki-border);
-            font-size: 0.85em;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            background: #151515;
+        /* Sidebar Moderna */
+        aside {
+            width: 260px;
+            background-color: var(--bg-panel);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
         }
 
-        nav img { filter: invert(1) sepia(1) saturate(5) hue-rotate(-50deg); margin-bottom: 10px; }
-        nav hr { border: 0; border-top: 1px solid var(--wiki-border); }
-        nav a { color: var(--wiki-blue); text-decoration: none; display: block; margin: 8px 0; }
-        nav a:hover { text-decoration: underline; }
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
 
-        /* Cuerpo principal */
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        nav a:hover {
+            background-color: #222;
+            color: #fff;
+            border-left: 3px solid var(--accent-red);
+        }
+
+        .credits {
+            margin-top: auto;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        /* Contenido Principal */
         main {
             flex: 1;
-            padding: 30px 50px;
-            max-width: 1000px;
+            padding: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 50px;
         }
 
         h1 {
-            font-family: 'Georgia', serif;
-            font-size: 2.5em;
-            border-bottom: 1px solid var(--wiki-border);
-            color: #fff;
-            margin-top: 0;
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
         }
 
-        .autor-tag {
-            background: #2a1010;
-            border: 1px solid var(--horror-red);
-            padding: 5px 10px;
-            font-size: 0.8em;
-            color: #ff6666;
+        .subtitle {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-red);
+            font-size: 1rem;
+        }
+
+        p {
+            line-height: 1.7;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        /* Grid de Secciones (Tarjetas) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: var(--accent-red);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%) contrast(120%);
+            transition: filter 0.3s ease;
+        }
+
+        .card:hover img {
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex: 1;
+        }
+
+        .card-content h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            border-bottom: none;
+        }
+
+        .tag {
             display: inline-block;
-            margin-bottom: 20px;
+            background: rgba(138, 3, 3, 0.15);
+            color: var(--accent-red);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 15px;
         }
-
-        /* Infobox (Ficha a la derecha) */
-        .infobox {
-            float: right;
-            width: 280px;
-            background: #252525;
-            border: 1px solid var(--wiki-border);
-            padding: 10px;
-            margin-left: 20px;
-            font-size: 0.9em;
-        }
-
-        .infobox th { background: #333; color: #fff; padding: 5px; }
-        .infobox td { padding: 5px; border-bottom: 1px solid #333; }
-        .infobox img { width: 100%; border: 1px solid #000; }
-
-        /* Secciones */
-        h2 { border-bottom: 1px solid var(--wiki-border); margin-top: 40px; }
-        .toc { background: #222; border: 1px solid var(--wiki-border); padding: 15px; display: inline-block; margin: 20px 0; }
-        
-        .image-gallery { display: flex; gap: 10px; margin: 20px 0; }
-        .image-gallery figure { margin: 0; text-align: center; font-size: 0.8em; color: #888; }
-        .image-gallery img { width: 200px; height: 150px; object-fit: cover; border: 1px solid #444; }
     </style>
 </head>
 <body>
 
-<nav>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Wikipedia-logo-v2.svg" alt="Wiki Horror" width="120">
-    <a href="#">Portada</a>
-    <a href="#">Índice de Entidades</a>
-    <a href="#">Eventos Recientes</a>
-    <hr>
-    <p><b>Creador: Franchu</b></p>
-    <a href="#">Perfil del Autor</a>
-    <a href="#">Donaciones (Almas)</a>
-</nav>
-
-<main>
-    <div class="autor-tag">Archivo curado y verificado por <b>Franchu</b></div>
-    <h1>HorroPedia</h1>
-    <p>De <b>HorroPedia</b>, la enciclopedia de lo prohibido.</p>
-
-    <div class="infobox">
-        <table>
-            <tr><th colspan="2">Archivo Maestro: HorroPedia</th></tr>
-            <tr><td colspan="2"><img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=300" alt="Terror"></td></tr>
-            <tr><td><b>Creador</b></td><td>Franchu</td></tr>
-            <tr><td><b>Fundación</b></td><td>2026 (Registros de 2013)</td></tr>
-            <tr><td><b>Estado</b></td><td>En constante expansión</td></tr>
-            <tr><td><b>Nivel de Riesgo</b></td><td>Extremo</td></tr>
-        </table>
-    </div>
-
-    <p>La <b>HorroPedia</b> es una base de datos digital dedicada a la preservación y análisis de fenómenos paranormales de internet, centrándose especialmente en la transición entre el <b>terror clásico de 2013</b> y los nuevos formatos de <b>terror analógico</b> modernos.</p>
-
-    <div class="toc">
-        <b>Sumario</b>
-        <ul>
-            <li>1. <a href="#historia">Historia del Archivo</a></li>
-            <li>2. <a href="#era-2013">La Época de Oro (2013)</a></li>
-            <li>3. <a href="#era-moderna">Terror Moderno y Analógico</a></li>
-            <li>4. <a href="#seguridad">Advertencia de Seguridad</a></li>
-        </ul>
-    </div>
-
-    <section id="historia">
-        <h2>Historia del Archivo</h2>
-        <p>Fundada por el investigador conocido como <b>Franchu</b>, la HorroPedia nació de la necesidad de documentar historias que los foros convencionales estaban borrando. A diferencia de otras wikis, este sitio mantiene los archivos originales, sin censura, recuperando <i>logs</i> perdidos de la era de los rituales de internet.</p>
-    </section>
-
-    <section id="era-2013">
-        <h2>La Época de Oro (2013)</h2>
-        <p>En este periodo, las leyendas se centraban en entidades físicas y archivos de medios corruptos. Es la era de los personajes que definieron una generación.</p>
-        
-        <div class="image-gallery">
-            <figure>
-                <img src="https://m.media-amazon.com/images/I/41O-n2mP80L._AC_.jpg" alt="Slenderman">
-                <figcaption>El Operador (Slenderman)</figcaption>
-            </figure>
-            <figure>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0K6mUqM25qR-j9K0N4XQJ5W5w_pXfXN-Z_A&s" alt="Smile Dog">
-                <figcaption>Registro: Smile.jpg</figcaption>
-            </figure>
+    <aside>
+        <div class="logo">HORROPEDIA</div>
+        <nav>
+            <a href="#" style="color: #fff; border-left: 3px solid var(--accent-red); background: #222;">> Archivo Central</a>
+            <a href="era-2013.html">> Registros 2013</a>
+            <a href="era-moderna.html">> Registros Modernos</a>
+            <a href="#">> Protocolos de Seguridad</a>
+        </nav>
+        <div class="credits">
+            DIRECTORIO INICIADO<br><br>
+            ADMINISTRADOR:<br>
+            <span style="color: #fff;">FRANCHU</span><br>
+            ESTADO: ONLINE
         </div>
-        <p>Ver más: <a href="era-2013.html">Índice completo de 2013</a>.</p>
-    </section>
+    </aside>
 
-    <section id="era-moderna">
-        <h2>Terror Moderno y Analógico</h2>
-        <p>El horror ha evolucionado hacia la distorsión de la realidad. Ya no se trata solo de monstruos, sino de espacios que no deberían existir y fallos en la percepción humana.</p>
-        
-        <div class="image-gallery">
-            <figure>
-                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2022/02/The-Backrooms.jpg" alt="Backrooms">
-                <figcaption>Nivel 0: Los Backrooms</figcaption>
-            </figure>
-            <figure>
-                <img src="https://static.wikia.nocookie.net/villains/images/8/8b/Gabriel_The_Mandela_Catalogue.png" alt="Alternates">
-                <figcaption>Entidad tipo "Alterno"</figcaption>
-            </figure>
+    <main>
+        <header>
+            <h1>Base de Datos Central</h1>
+            <div class="subtitle">ESTADO DEL SISTEMA: RECUPERANDO ARCHIVOS PERDIDOS</div>
+            <p>Bienvenido a la <strong>HorroPedia</strong>. Esta terminal contiene la recopilación más extensa de fenómenos anómalos de internet, curada y mantenida por <strong>Franchu</strong>. Desde los primeros avistamientos en foros de 2013 hasta los incidentes analógicos de la era moderna.</p>
+        </header>
+
+        <div class="grid-container">
+            <a href="era-2013.html" class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://m.media-amazon.com/images/I/41O-n2mP80L._AC_.jpg" alt="Slenderman">
+                </div>
+                <div class="card-content">
+                    <span class="tag">ERA CLÁSICA // 2013</span>
+                    <h2>Los Primeros Mitos</h2>
+                    <p>Archivos recuperados de los foros originales. Entidades físicas, cartuchos malditos y los íconos que definieron la época dorada de los creepypastas.</p>
+                </div>
+            </a>
+
+            <a href="era-moderna.html" class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2022/02/The-Backrooms.jpg" alt="Backrooms">
+                </div>
+                <div class="card-content">
+                    <span class="tag">ERA MODERNA // ACTUAL</span>
+                    <h2>Terror Analógico y Espacios Liminales</h2>
+                    <p>Registros en cinta, VHS corruptos y fallos en la realidad. Los Backrooms, catálogos de entidades y horrores incomprensibles de la red actual.</p>
+                </div>
+            </a>
+            
+            <div class="card" style="border-style: dashed; cursor: default;">
+                <div class="card-content" style="display: flex; align-items: center; justify-content: center; text-align: center; height: 100%;">
+                    <h2 style="color: #444;">[ ARCHIVO CORRUPTO ]</h2>
+                </div>
+            </div>
         </div>
-        <p>Ver más: <a href="era-moderna.html">Registros Modernos</a>.</p>
-    </section>
-
-    <section id="seguridad">
-        <h2>Advertencia de Seguridad</h2>
-        <p>Cualquier fallo en el renderizado de esta página puede indicar que una entidad está intentando acceder a su red local a través del navegador. <b>Franchu</b> no se hace responsable de avistamientos en el mundo real.</p>
-    </section>
-
-</main>
+    </main>
 
 </body>
 </html>
