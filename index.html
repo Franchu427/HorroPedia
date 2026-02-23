@@ -2,153 +2,174 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>HorroPedia: La Enciclopedia del Miedo</title>
+    <title>HorroPedia - La Enciclopedia del Terror</title>
     <style>
         :root {
-            --bg-body: #1a1a1a;
-            --bg-content: #222222;
-            --text-main: #e0e0e0;
-            --wiki-blue: #69b3ff;
-            --wiki-border: #444;
-            --horror-red: #8b0000;
+            --bg-body: #121212;
+            --bg-content: #1e1e1e;
+            --text-main: #d0d0d0;
+            --wiki-blue: #4ea8ff;
+            --wiki-border: #333;
+            --horror-red: #a00000;
         }
 
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             margin: 0;
             display: flex;
         }
 
-        /* Barra lateral estilo Wiki */
+        /* Barra lateral */
         nav {
-            width: 160px;
-            padding: 20px 10px;
+            width: 170px;
+            padding: 20px 15px;
             border-right: 1px solid var(--wiki-border);
-            font-size: 0.8em;
+            font-size: 0.85em;
             height: 100vh;
             position: sticky;
             top: 0;
+            background: #151515;
         }
 
-        nav a {
-            color: var(--wiki-blue);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-        }
+        nav img { filter: invert(1) sepia(1) saturate(5) hue-rotate(-50deg); margin-bottom: 10px; }
+        nav hr { border: 0; border-top: 1px solid var(--wiki-border); }
+        nav a { color: var(--wiki-blue); text-decoration: none; display: block; margin: 8px 0; }
+        nav a:hover { text-decoration: underline; }
 
-        /* Contenido Principal */
+        /* Cuerpo principal */
         main {
             flex: 1;
-            padding: 20px 40px;
-            background-color: var(--bg-content);
-            max-width: 900px;
-            margin: 0 auto;
-            border-left: 1px solid var(--wiki-border);
+            padding: 30px 50px;
+            max-width: 1000px;
         }
 
         h1 {
-            font-family: 'Linux Libertine', 'Georgia', serif;
-            font-size: 2em;
+            font-family: 'Georgia', serif;
+            font-size: 2.5em;
             border-bottom: 1px solid var(--wiki-border);
-            margin-bottom: 5px;
             color: #fff;
-        }
-
-        .subtitle {
-            font-size: 0.8em;
-            color: #888;
-            margin-bottom: 20px;
-        }
-
-        /* Tabla de contenidos (TOC) */
-        .toc {
-            background: #2a2a2a;
-            border: 1px solid var(--wiki-border);
-            padding: 15px;
-            display: inline-block;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-
-        .toc h2 {
-            font-size: 1em;
-            text-align: center;
             margin-top: 0;
         }
 
-        section {
-            margin-top: 30px;
+        .autor-tag {
+            background: #2a1010;
+            border: 1px solid var(--horror-red);
+            padding: 5px 10px;
+            font-size: 0.8em;
+            color: #ff6666;
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
-        h2 {
-            border-bottom: 1px solid var(--wiki-border);
-            font-size: 1.5em;
+        /* Infobox (Ficha a la derecha) */
+        .infobox {
+            float: right;
+            width: 280px;
+            background: #252525;
+            border: 1px solid var(--wiki-border);
+            padding: 10px;
+            margin-left: 20px;
+            font-size: 0.9em;
         }
 
-        /* Enlaces estilo Wiki */
-        a { color: var(--wiki-blue); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        .infobox th { background: #333; color: #fff; padding: 5px; }
+        .infobox td { padding: 5px; border-bottom: 1px solid #333; }
+        .infobox img { width: 100%; border: 1px solid #000; }
 
-        /* Estilo para las secciones de eras */
-        .era-box {
-            border-left: 4px solid var(--horror-red);
-            padding-left: 15px;
-            margin: 20px 0;
-            background: #2d1a1a;
-        }
+        /* Secciones */
+        h2 { border-bottom: 1px solid var(--wiki-border); margin-top: 40px; }
+        .toc { background: #222; border: 1px solid var(--wiki-border); padding: 15px; display: inline-block; margin: 20px 0; }
+        
+        .image-gallery { display: flex; gap: 10px; margin: 20px 0; }
+        .image-gallery figure { margin: 0; text-align: center; font-size: 0.8em; color: #888; }
+        .image-gallery img { width: 200px; height: 150px; object-fit: cover; border: 1px solid #444; }
     </style>
 </head>
 <body>
 
 <nav>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Wikipedia-logo-v2.svg" alt="Logo" width="100" style="filter: invert(1) opacity(0.5);">
-    <hr>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Wikipedia-logo-v2.svg" alt="Wiki Horror" width="120">
     <a href="#">Portada</a>
-    <a href="#">Contenido de terror</a>
-    <a href="#">Páginas aleatorias</a>
+    <a href="#">Índice de Entidades</a>
+    <a href="#">Eventos Recientes</a>
     <hr>
-    <p style="color:#666">Participar</p>
-    <a href="#">Informar un avistamiento</a>
-    <a href="#">Ayuda</a>
+    <p><b>Creador: Franchu</b></p>
+    <a href="#">Perfil del Autor</a>
+    <a href="#">Donaciones (Almas)</a>
 </nav>
 
 <main>
+    <div class="autor-tag">Archivo curado y verificado por <b>Franchu</b></div>
     <h1>HorroPedia</h1>
-    <div class="subtitle">De Wikipedia, la enciclopedia libre de lo oculto</div>
+    <p>De <b>HorroPedia</b>, la enciclopedia de lo prohibido.</p>
 
-    <p>La <b>HorroPedia</b> es un proyecto colaborativo para documentar fenómenos paranormales, <i>creepypastas</i> y leyendas urbanas digitales que han surgido desde los inicios de la red hasta la actualidad.</p>
-
-    <div class="toc">
-        <h2>Sumario</h2>
-        <ol>
-            <li><a href="#era-2013">1. Era Clásica (2010-2014)</a></li>
-            <li><a href="#era-moderna">2. Era Moderna (2015-Presente)</a></li>
-            <li><a href="#seguridad">3. Protocolos de seguridad</a></li>
-        </ol>
+    <div class="infobox">
+        <table>
+            <tr><th colspan="2">Archivo Maestro: HorroPedia</th></tr>
+            <tr><td colspan="2"><img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=300" alt="Terror"></td></tr>
+            <tr><td><b>Creador</b></td><td>Franchu</td></tr>
+            <tr><td><b>Fundación</b></td><td>2026 (Registros de 2013)</td></tr>
+            <tr><td><b>Estado</b></td><td>En constante expansión</td></tr>
+            <tr><td><b>Nivel de Riesgo</b></td><td>Extremo</td></tr>
+        </table>
     </div>
 
+    <p>La <b>HorroPedia</b> es una base de datos digital dedicada a la preservación y análisis de fenómenos paranormales de internet, centrándose especialmente en la transición entre el <b>terror clásico de 2013</b> y los nuevos formatos de <b>terror analógico</b> modernos.</p>
+
+    <div class="toc">
+        <b>Sumario</b>
+        <ul>
+            <li>1. <a href="#historia">Historia del Archivo</a></li>
+            <li>2. <a href="#era-2013">La Época de Oro (2013)</a></li>
+            <li>3. <a href="#era-moderna">Terror Moderno y Analógico</a></li>
+            <li>4. <a href="#seguridad">Advertencia de Seguridad</a></li>
+        </ul>
+    </div>
+
+    <section id="historia">
+        <h2>Historia del Archivo</h2>
+        <p>Fundada por el investigador conocido como <b>Franchu</b>, la HorroPedia nació de la necesidad de documentar historias que los foros convencionales estaban borrando. A diferencia de otras wikis, este sitio mantiene los archivos originales, sin censura, recuperando <i>logs</i> perdidos de la era de los rituales de internet.</p>
+    </section>
+
     <section id="era-2013">
-        <h2>Era Clásica (2010-2014)</h2>
-        <p>Conocida como la "Época Dorada", se caracteriza por el surgimiento de figuras como <b>Slenderman</b> y los famosos archivos perdidos de series animadas.</p>
-        <div class="era-box">
-            <p>Ver artículo principal: <a href="era-2013.html">Cronología de Creepypastas 2013</a>.</p>
+        <h2>La Época de Oro (2013)</h2>
+        <p>En este periodo, las leyendas se centraban en entidades físicas y archivos de medios corruptos. Es la era de los personajes que definieron una generación.</p>
+        
+        <div class="image-gallery">
+            <figure>
+                <img src="https://m.media-amazon.com/images/I/41O-n2mP80L._AC_.jpg" alt="Slenderman">
+                <figcaption>El Operador (Slenderman)</figcaption>
+            </figure>
+            <figure>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0K6mUqM25qR-j9K0N4XQJ5W5w_pXfXN-Z_A&s" alt="Smile Dog">
+                <figcaption>Registro: Smile.jpg</figcaption>
+            </figure>
         </div>
+        <p>Ver más: <a href="era-2013.html">Índice completo de 2013</a>.</p>
     </section>
 
     <section id="era-moderna">
-        <h2>Era Moderna (2015-Presente)</h2>
-        <p>Enfoque en el <b>Terror Analógico</b>, videos encontrados y espacios liminales como los <i>Backrooms</i>.</p>
-        <div class="era-box" style="border-color: #008b8b; background: #1a2a2a;">
-            <p>Ver artículo principal: <a href="era-moderna.html">Registros de Terror Analógico</a>.</p>
+        <h2>Terror Moderno y Analógico</h2>
+        <p>El horror ha evolucionado hacia la distorsión de la realidad. Ya no se trata solo de monstruos, sino de espacios que no deberían existir y fallos en la percepción humana.</p>
+        
+        <div class="image-gallery">
+            <figure>
+                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2022/02/The-Backrooms.jpg" alt="Backrooms">
+                <figcaption>Nivel 0: Los Backrooms</figcaption>
+            </figure>
+            <figure>
+                <img src="https://static.wikia.nocookie.net/villains/images/8/8b/Gabriel_The_Mandela_Catalogue.png" alt="Alternates">
+                <figcaption>Entidad tipo "Alterno"</figcaption>
+            </figure>
         </div>
+        <p>Ver más: <a href="era-moderna.html">Registros Modernos</a>.</p>
     </section>
 
     <section id="seguridad">
-        <h2>Protocolos de seguridad</h2>
-        <p>Advertencia: Leer estos archivos bajo su propio riesgo. No nos hacemos responsables de pérdidas de cordura o fallos en el sistema operativo.</p>
+        <h2>Advertencia de Seguridad</h2>
+        <p>Cualquier fallo en el renderizado de esta página puede indicar que una entidad está intentando acceder a su red local a través del navegador. <b>Franchu</b> no se hace responsable de avistamientos en el mundo real.</p>
     </section>
 
 </main>
